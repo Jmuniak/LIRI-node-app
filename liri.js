@@ -1,8 +1,10 @@
 require("dotenv").config();
 let axios = require("axios");
+const moment = require("moment");
+const Spotify = require("node-spotify-api");
 const keys = require("./keys.js");
 // const spotify = new Spotify(keys.spotify);
-const moment = require("moment");
+
 
 let request = process.argv[2];
 let reqValue = process.argv.slice(3).join(" ");
@@ -11,7 +13,6 @@ let reqValue = process.argv.slice(3).join(" ");
 switch (request) {
     case "concert-this":
         concertThis();
-
         break;
 
     case "spotify-this-song":
@@ -41,15 +42,13 @@ function concertThis() {
         function (response) {
             // console.log(response.data[0]);
             response.data.forEach(elem => { // could use map
-                let concertDate = moment(`${elem.datetime}`);
                 console.log(`-------------------
                 \nSearching for title: "${reqValue}"
                 \nSearch Results: 
                 \nVenue Name: ${elem.venue.name}
                 \nVenue Location: ${elem.venue.city}, ${elem.venue.region}, ${elem.venue.country}
-                \nConcert Date: ${concertDate.format("MM/DD/YYYY")}  
+                \nConcert Date: ${moment(elem.datetime).format("MM/DD/YYYY")}  
                 \n-------------------`);
-
             });
         }
     )
@@ -59,6 +58,34 @@ function concertThis() {
 // try using colors npm
 
 function spotifyThis() {
+
+    //     * Artist(s)
+
+    //     * The song's name
+
+    //     * A preview link of the song from Spotify
+
+    //     * The album that the song is from
+
+    //   * If no song is provided then your program will default to "The Sign" by Ace of Base.
+
+    console.log(keys.spotify);
+    let spotify = new Spotify(keys.spotify);
+
+    spotify.search({ type: 'track', query: reqValue, limit: 1 }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        let totalArtist = data.tracks.items[0].artists.map(artist => { return artist.name });
+
+        // console.log(data.tracks.items[0]);
+        console.log("-------------");
+        console.log("Varrious Artists:", totalArtist.join(", "));
+        console.log("Album Name:", data.tracks.items[0].album.name);
+        console.log("Varrious Artists:", data.tracks.items[0].name);
+        console.log("Preview URL:", data.tracks.items[0].preview_url);
+    });
 
 }
 
