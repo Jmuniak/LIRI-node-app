@@ -37,9 +37,22 @@ Because screenshots (and well-written READMEs) are extremely important in the co
 If you haven't written a markdown file yet, [click here for a rundown](https://guides.github.com/features/mastering-markdown/), or just take a look at the raw file of these instructions.
 
 
+4. Next, create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes) once you have them:
 
-Switch statement to handle the input
+```js
+# Spotify API keys
 
-if spotify ... then do this
+SPOTIFY_ID=your-spotify-id
+SPOTIFY_SECRET=your-spotify-secret
 
-if bands in town...  then do this 
+```
+
+* This file will be used by the `dotenv` package to set what are known as environment variables to the global `process.env` object in node. These are values that are meant to be specific to the computer that node is running on, and since we are gitignoring this file, they won't be pushed to github &mdash; keeping our API key information private.
+
+* If someone wanted to clone your app from github and run it themselves, they would need to supply their own `.env` file for it to work.
+
+
+readFile:
+spotify-this-song,"I Want it That Way" - done
+movie-this,"batman" - done
+concert-this,"rainbow kitten surprise" - done with adding .replace(/^"(.*)"$/, '$1'); on line 125 to remove all double quotes at the begining and end of the string.
