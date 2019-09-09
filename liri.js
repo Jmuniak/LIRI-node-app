@@ -103,7 +103,7 @@ function concertThis(reqValue) {
 
 // try using colors npm
 // `spotify-this-song`
-function spotifyThis() {
+function spotifyThis(reqValue) {
 
     let spotify = new Spotify(keys.spotify);
     //   * If no song is provided then your program will default to "The Sign" by Ace of Base.
@@ -128,7 +128,7 @@ function spotifyThis() {
 
 
 // * `movie-this`
-function movieThis() {
+function movieThis(reqValue) {
 
     // * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
     if (reqValue === '') {
