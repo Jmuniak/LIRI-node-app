@@ -54,48 +54,28 @@ function concertThis(reqValue) {
                 \nConcert Date: ${moment(elem.datetime).format("MM/DD/YYYY")}  
                 \n-------------------`));
 
-                //starting append Bonus work.
-                // not finished. 
+                let text = ((`-------------------
+                \nSearching for title: "${reqValue}"
+                \nSearch Results: 
+                \nVenue Name: ${elem.venue.name}
+                \nVenue Location: ${elem.venue.city}, ${elem.venue.region}, ${elem.venue.country}
+                \nConcert Date: ${moment(elem.datetime).format("MM/DD/YYYY")}  
+                \n-------------------`))
 
-                // fs.appendFile("log.txt", "\n" + text + "\n", function(err) {
+                fs.appendFile("log.txt", "\n" + text + "\n", function (err) {
 
-                //     // If an error was experienced we will log it.
-                //     if (err) {
-                //       console.log(err);
-                //     }
+                    // If an error was experienced we will log it.
+                    if (err) {
+                        console.log(err);
+                    }
 
-                //     // If no error is experienced, we'll log the phrase "Content Added" to our node console.
-                //     else {
-                //       console.log("Content Added!");
-                //       \nSearching for title: "${reqValue}"
-                // \nSearch Results: 
-                // \nVenue Name: ${elem.venue.name}
-                // \nVenue Location: ${elem.venue.city}, ${elem.venue.region}, ${elem.venue.country}
-                // \nConcert Date: ${moment(elem.datetime).format("MM/DD/YYYY")}  
-                // \n-------------------`
-                //     }
+                    // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+                    else {
+                        console.log("Content Added!");
 
-                //   }); 
-                //     `-------------------
-                // let ConcertLog = function (name, city, region, country, date) {
-                //     this.name = name;
-                //     this.city = city;
-                //     this.region = region;
-                //     this.country = country;
-                //     this.date = date;
-                //     this.newConcert = function (name, city, region, country, date) {
-                //         this.newConcert.push(new ConcertLog(name, city, region, country, date));
-                //     }
-                // };
+                    }
 
-                // newConcert((`-------------------
-                // \nSearching for title: "${reqValue}"
-                // \nSearch Results: 
-                // \nVenue Name: ${elem.venue.name}
-                // \nVenue Location: ${elem.venue.city}, ${elem.venue.region}, ${elem.venue.country}
-                // \nConcert Date: ${moment(elem.datetime).format("MM/DD/YYYY")}  
-                // \n-------------------`));
-
+                });
             });
         }
     )
